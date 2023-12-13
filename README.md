@@ -7,3 +7,5 @@ demo application for my student
 http://localhost:8008/swagger-ui/index.html#
 
 qwqwqw
+
+йцуйцуйцуй
