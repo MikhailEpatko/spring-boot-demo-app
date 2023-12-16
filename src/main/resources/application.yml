@@ -20,8 +20,8 @@ spring:
       read-date-timestamps-as-nanoseconds: false
   datasource:
     url: jdbc:postgresql://localhost:5432/farm_db
-    username: postgres
-    password: postgres
+    username: kate
+    password: password
     driver-class-name: org.postgresql.Driver
   liquibase:
     enabled: true

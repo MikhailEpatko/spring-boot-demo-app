@@ -57,4 +57,13 @@ public class CowsService {
         existentCow.update(request);
         cowRepository.save(existentCow);
     }
+
+    public void deleteCow(long id) {
+        log.info("Обработка запроса 'удалить корову по ее ID': {}", id);
+        if (id < 1)
+            throw new BadRequestException("ID коровы не может быть меньше 1");
+        var existentCow = cowRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Корова с ID = " + id + " не найдена"));
+        cowRepository.delete(existentCow);
+    }
 }

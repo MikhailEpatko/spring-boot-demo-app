@@ -64,6 +64,6 @@ public class CowsController implements CowsApi {
     @DeleteMapping("/cows/{id}")
     @Override
     public void deleteCow(@PathVariable long id) {
-        throw new RuntimeException("Метод не реализован");
+        cows.deleteCow(id);
     }
 }
