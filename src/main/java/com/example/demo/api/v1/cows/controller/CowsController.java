@@ -5,7 +5,7 @@ import com.example.demo.api.v1.cows.model.request.AddCowRequest;
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.model.response.FullCowResponse;
 import com.example.demo.api.v1.cows.model.response.ShortCowResponse;
-import com.example.demo.api.v1.cows.service.CowsService;
+import com.example.demo.api.v1.cows.service.AddCowToFarmer;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CowsController implements CowsApi {
 
-    private final CowsService cows;
+    private final AddCowToFarmer cows;
 
     @GetMapping("/cows")
     @Override
