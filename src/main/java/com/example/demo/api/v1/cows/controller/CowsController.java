@@ -5,9 +5,11 @@ import com.example.demo.api.v1.cows.model.request.AddCowRequest;
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.model.response.FullCowResponse;
 import com.example.demo.api.v1.cows.model.response.ShortCowResponse;
-import com.example.demo.api.v1.cows.service.CowsService;
+import com.example.demo.api.v1.cows.service.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +25,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CowsController implements CowsApi {
 
-    private final CowsService cows;
+    private final GetAllCows allCows;
+    private final GetAllCowsFarmerByFarmerId cowsFarmer;
+    private final GetCowById cowById;
+    private final AddCowToFarmer addCowToFarmer;
+    private final UpdateCow updateCow;
+    private final DeleteCowById deleteCowById;
 
     @GetMapping("/cows")
     @Override
     public List<ShortCowResponse> getAllCows() {
-        return cows.all()
+        return allCows.execute()
                 .stream()
                 .map(CowEntity::toShortResponse)
                 .collect(Collectors.toList());
@@ -37,7 +44,7 @@ public class CowsController implements CowsApi {
     @GetMapping("/{farmerId}/cows")
     @Override
     public List<ShortCowResponse> farmerCows(@PathVariable long farmerId) {
-        return cows.byFarmer(farmerId)
+        return cowsFarmer.execute(farmerId)
                 .stream()
                 .map(CowEntity::toShortResponse)
                 .collect(Collectors.toList());
@@ -46,24 +53,24 @@ public class CowsController implements CowsApi {
     @GetMapping("/cows/{id}")
     @Override
     public FullCowResponse cow(@PathVariable long id) {
-        return cows.byId(id).toFullResponse();
+        return cowById.execute(id).toFullResponse();
     }
 
     @PostMapping("/cows")
     @Override
     public void addCowByFarmer(@RequestBody AddCowRequest request) {
-        cows.add(request);
+        addCowToFarmer.execute(request);
     }
 
     @PutMapping("/cows")
     @Override
     public void updateCowDetails(@RequestBody UpdateCowDetailsRequest request) {
-        cows.updateCowDetails(request);
+        updateCow.execute(request);
     }
 
     @DeleteMapping("/cows/{id}")
     @Override
     public void deleteCow(@PathVariable long id) {
-        cows.deleteCow(id);
+        deleteCowById.execute(id);
     }
 }
