@@ -1,7 +1,7 @@
 package com.example.demo.api.v1.cows.model.entity;
 
 import com.example.demo.api.v1.cows.model.enums.Color;
-import com.example.demo.api.v1.cows.model.enums.Status;
+import com.example.demo.api.v1.cows.model.enums.CowStatus;
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.model.response.FullCowResponse;
 import com.example.demo.api.v1.cows.model.response.ShortCowResponse;
@@ -40,7 +40,7 @@ public class CowEntity {
     private int liters;
 
     @Column(name = "status")
-    private Status status;
+    private CowStatus status;
 
     public ShortCowResponse toShortResponse() {
         return new ShortCowResponse(id, name, status);

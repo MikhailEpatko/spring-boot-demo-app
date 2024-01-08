@@ -1,7 +1,7 @@
 package com.example.demo.api.v1.cows.model.request;
 
 import com.example.demo.api.v1.cows.model.enums.Color;
-import com.example.demo.api.v1.cows.model.enums.Status;
+import com.example.demo.api.v1.cows.model.enums.CowStatus;
 import com.example.demo.validation.annotation.NullableNotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.Min;
@@ -27,5 +27,5 @@ public class UpdateCowDetailsRequest {
     @Min(value = 0, message = "Не может быть меньше 0")
     private Integer liters;
 
-    private Status status;
+    private CowStatus status;
 }
