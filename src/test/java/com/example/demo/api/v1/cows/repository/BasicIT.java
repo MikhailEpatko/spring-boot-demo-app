@@ -25,7 +25,7 @@ public interface BasicIT {
     }
 
     @Container
-    static PostgreSQLContainer<?> postgres =
+    PostgreSQLContainer<?> postgres =
             new PostgreSQLContainer<>("postgres:15-alpine");
 
     @DynamicPropertySource
