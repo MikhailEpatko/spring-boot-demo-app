@@ -70,7 +70,7 @@ public class CowsController implements CowsApi {
 
     @DeleteMapping("/cows/{id}")
     @Override
-    public void deleteCow(@PathVariable long id) {
-        deleteCowById.execute(id);
+    public int deleteCow(@PathVariable long id) {
+        return deleteCowById.execute(id);
     }
 }

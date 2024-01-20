@@ -18,13 +18,13 @@ public class DeleteCowById {
     private final CowRepository cowRepository;
     private final ValidateRequest validate;
 
-    public void execute(long id) {
+    public int execute(long id) {
         log.info("Обработка запроса 'удалить корову по ее ID': {}", id);
         if (id < 1)
             throw new BadRequestException("ID коровы не может быть меньше 1");
         var resultDeleted = cowRepository.deleteCowById(id);
         if (resultDeleted == 0) {
             throw new NotFoundException("Корова с ID = " + id + " не найдена");
-        }
+        } else return resultDeleted;
     }
 }
