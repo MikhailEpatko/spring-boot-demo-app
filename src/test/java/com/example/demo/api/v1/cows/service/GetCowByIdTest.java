@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -25,20 +26,22 @@ class GetCowByIdTest {
 
     @ParameterizedTest
     @ValueSource(longs = {1, 2, 3})
-    @DisplayName("когда передаём правильный id, не должно быть выброшено исключение")
-    void whenGetAndOllOk(long id) {
+    @DisplayName("когда передаём валидный id, не должно быть выброшено исключение")
+    void execute1(long id) {
 
-        Optional<CowEntity> opt = Optional.of(new CowEntity());
-        when(cows.findById(id)).thenReturn(opt);
+        var expected = Optional.of(new CowEntity());
+        when(cows.findById(id)).thenReturn(expected);
 
+        var result = Optional.of(service.execute(id));
+
+        assertEquals(expected, result);
         assertDoesNotThrow(() -> service.execute(id));
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {0})
-    @DisplayName("когда передаём не валидный id, должно быть выброшено исключение")
-    void whenGetWithNotValidIdThanThrowBadRequest(long id) {
-        when(cows.findById(id)).thenThrow(BadRequestException.class);
+    @ValueSource(longs = {0, -1})
+    @DisplayName("Если id меньше 1, будет выброшено исключение")
+    void execute2(long id) {
 
         assertThrows(BadRequestException.class, () -> service.execute(id));
     }
@@ -46,9 +49,7 @@ class GetCowByIdTest {
     @ParameterizedTest
     @ValueSource(longs = {2, 3})
     @DisplayName("когда передаём id которого нет в базе, должно быть выброшено исключение")
-    void whenGetWithIdThatNotInBaseThenThrowNotFound(long id) {
-
-        when(cows.findById(1L)).thenThrow(NotFoundException.class);
+    void execute3(long id) {
 
         assertThrows(NotFoundException.class, () -> service.execute(1L));
     }

@@ -21,18 +21,16 @@ class GetAllCowsTest {
 
     @Test
     @DisplayName("при запросе получаем список всех коров")
-    void whenSaveSomeCowThenGivenAllOfThem() {
+    void execute() {
 
         var cow1 = new CowEntity();
         var cow2 = new CowEntity();
         var cow3 = new CowEntity();
-        cows.save(cow1);
-        cows.save(cow2);
-        cows.save(cow3);
-        var resultList = List.of(cow1, cow2, cow3);
+        var expected = List.of(cow1, cow2, cow3);
+        when(cows.findAll()).thenReturn(expected);
 
-        when(cows.findAll()).thenReturn(resultList);
+        var result = service.execute();
 
-        assertEquals(service.execute(), resultList);
+        assertEquals(result, expected);
     }
 }
