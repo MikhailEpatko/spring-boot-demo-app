@@ -1,9 +1,7 @@
 up:
-    sudo docker-compose -f docker-compose.yml up -d --build --force-recreate app
+	sudo docker-compose -f docker-compose.yml up -d --build --force-recreate --no-deps farm-app
 down:
-    sudo docker-compose -f docker-compose.yml down app
+	sudo docker-compose -f docker-compose.yml down farm-app
 update:
-    make down
-    sudo docker system prune -f -a --volumes
-    git pull
-    make up
+	git pull
+	make up

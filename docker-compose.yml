@@ -24,3 +24,16 @@ services:
       POSTGRES_PASSWORD: postgres
     networks:
       back:
+
+  farm-app:
+    container_name: farm-app
+    build:
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - farm-db
+    ports:
+      - "8008:8008"
+    restart: on-failure
+
+

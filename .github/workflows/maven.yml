@@ -59,5 +59,4 @@ jobs:
             StrictHostKeyChecking no
           END
       - name: Run Deploy
-        run: |
-          ssh target "cd ~/projects/kate-learning && make update"
+        run: ssh target "cd ~/projects/spring-boot-demo-app && make update"
