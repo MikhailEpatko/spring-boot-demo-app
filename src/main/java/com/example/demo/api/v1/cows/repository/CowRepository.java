@@ -16,6 +16,8 @@ public interface CowRepository extends JpaRepository<CowEntity, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "delete from farmer_cow where id = ?1", nativeQuery = true)
+    @Query(
+        nativeQuery = true,
+        value = "delete from farmer_cow where id = :id")
     int deleteCowById(long id);
 }

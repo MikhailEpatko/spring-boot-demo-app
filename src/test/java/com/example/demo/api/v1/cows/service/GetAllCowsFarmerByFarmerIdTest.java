@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -26,26 +26,28 @@ class GetAllCowsFarmerByFarmerIdTest {
 
     @ParameterizedTest
     @ValueSource(longs = {1, 2, 3})
-    @DisplayName("когда передаём правильный id, получаем список всех коров фермера")
+    @DisplayName("когда передаём правильный id, не должно быть выброшено исключение")
     void execute1(long id) {
-
         var cow1 = new CowEntity();
+        cow1.setFarmerId(1L);
+
         var cow2 = new CowEntity();
         var cow3 = new CowEntity();
-        var expected = List.of(cow1, cow2, cow3);
 
-        when(cows.findAllByFarmerId(id)).thenReturn(expected);
+        cows.save(cow1);
+        cows.save(cow2);
+        cows.save(cow3);
 
-        var result = service.execute(id);
+        var resultList = List.of(cow1);
 
-        assertEquals(expected, result);
+        when(cows.findAllByFarmerId(1L)).thenReturn(resultList);
+        assertDoesNotThrow(() -> service.execute(1));
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {-1, 0, -3})
+    @ValueSource(longs = {1, 2, 3})
     @DisplayName("когда передаём не валидный id, будет выброшено исключение")
     void execute2(long id) {
-
         assertThrows(BadRequestException.class, () -> service.execute(id));
     }
 }

@@ -12,7 +12,6 @@ management:
         include: '*'
 
 spring:
-
   main:
     allow-bean-definition-overriding: true
   jackson:
