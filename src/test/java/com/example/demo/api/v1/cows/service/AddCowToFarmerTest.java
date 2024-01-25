@@ -3,6 +3,7 @@ package com.example.demo.api.v1.cows.service;
 import com.example.demo.api.v1.cows.model.entity.CowEntity;
 import com.example.demo.api.v1.cows.model.request.AddCowRequest;
 import com.example.demo.api.v1.cows.repository.CowRepository;
+import com.example.demo.common.exceptions.LightWeightExceptions;
 import com.example.demo.validation.service.ValidateRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
