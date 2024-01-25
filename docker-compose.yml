@@ -1,0 +1,26 @@
+version: '3.8'
+
+volumes:
+  farm-db:
+    driver: local
+
+networks:
+  back:
+
+services:
+
+  farm-db:
+    image: postgres:15-alpine
+    hostname: farm-db
+    ports:
+      - "5432:5432"
+    container_name: farm-db
+    restart: unless-stopped
+    volumes:
+      - farm-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: farm_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      back:
