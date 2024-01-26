@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
-    - uses: actions/checkout@v4
+      uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
@@ -34,7 +34,7 @@ jobs:
     needs: tests
     steps:
       - name: checkout repo
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
       - name: Stop and remove containers, networks
         run: sudo docker-compose down farm-app
       - name: stop and remove containers, networks
