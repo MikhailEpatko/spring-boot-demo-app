@@ -39,5 +39,7 @@ services:
       - DATABASE_URL=${DATABASE_URL}
       - DATABASE_USER=${DATABASE_USER}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+    networks:
+      back:
 
 
