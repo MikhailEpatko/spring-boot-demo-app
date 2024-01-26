@@ -19,9 +19,9 @@ spring:
     deserialization:
       read-date-timestamps-as-nanoseconds: false
   datasource:
-    url: ${POSTGRES_URL:"jdbc:postgresql://localhost:5432/farm_db"}
-    username: ${POSTGRES_USER:kate}
-    password: ${POSTGRES_PASSWORD:password}
+    url: ${DATABASE_URL:'jdbc:postgresql://localhost:5432/farm_db'}
+    username: ${DATABASE_USER:kate}
+    password: ${DATABASE_PASSWORD:password}
     driver-class-name: org.postgresql.Driver
   liquibase:
     enabled: true
