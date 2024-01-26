@@ -6,7 +6,7 @@ update:
 	git pull
 	make up
 up-all:
-	eval `ssh-agent -s`
+	ssh-agent -s
 	ssh-add ~/.ssh/github
 	sudo docker-compose -f docker-compose.yml up -d --build
 down-all:
