@@ -5,3 +5,7 @@ down:
 update:
 	git pull
 	make up
+up-all:
+	sudo docker-compose -f docker-compose.yml up -d --build
+down-all:
+	sudo docker-compose -f docker-compose.yml down
