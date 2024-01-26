@@ -47,10 +47,9 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
-        with:
-          script: |
-            echo DATABASE_URL=${{ secrets.DATABASE_URL }} > .env
-            echo DATABASE_USER=${{ secrets.DATABASE_USER }} > .env
-            echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} > .env
       - name: run app
-        run: sudo docker-compose up -d farm-app
+        run: |
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} > .env
+          echo DATABASE_USER=${{ secrets.DATABASE_USER }} > .env
+          echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} > .env
+          sudo docker-compose up -d farm-app
