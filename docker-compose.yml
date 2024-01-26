@@ -35,5 +35,10 @@ services:
     ports:
       - "80:8008"
     restart: on-failure
+    environment:
+      - POSTGRES_HOST=$POSTGRES_HOST
+      - POSTGRES_PORT=$POSTGRES_PORT
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
 
 
