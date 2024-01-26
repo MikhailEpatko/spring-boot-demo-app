@@ -37,8 +37,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Stop and remove containers, networks
         run: sudo docker-compose down farm-app
-      - name: stop and remove containers, networks
-        run: sudo docker rm -vf $(sudo docker ps -aq)
       - name: remove unused data
         run: sudo docker system prune -a -f
         
