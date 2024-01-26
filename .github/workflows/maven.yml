@@ -48,8 +48,8 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
       - name: run app
-        env:
-          SPRING_DATASOURCE_URL: ${{ secrets.DATABASE_URL }}
-          DATABASE_USER: ${{ secrets.DATABASE_USER }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        with: |
+          export DATABASE_URL=${{ secrets.DATABASE_URL }}
+          export DATABASE_USER=${{ secrets.DATABASE_USER }}
+          export DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
         run: sudo docker-compose up -d farm-app
