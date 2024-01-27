@@ -9,9 +9,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.example.demo</groupId>
-	<artifactId>demo-app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>demo-app</name>
+	<artifactId>farm-app</artifactId>
+	<version>0.0.1</version>
+	<name>farm-app</name>
 	<description>Demo project for my sister</description>
 	<properties>
 		<java.version>17</java.version>
