@@ -1,6 +1,6 @@
 name: checkstyle
 
-on: [push, workflow_dispatch]
+on: [pull_request, workflow_dispatch]
 
 jobs:
   checkstyle:
@@ -13,4 +13,4 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           checkstyle_config: sun_checks.xml
-          level: warning
+          fail_on_error: true
