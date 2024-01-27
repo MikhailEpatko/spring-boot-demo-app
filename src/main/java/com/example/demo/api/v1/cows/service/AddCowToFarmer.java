@@ -1,7 +1,7 @@
 package com.example.demo.api.v1.cows.service;
 
-import com.example.demo.api.v1.cows.repository.CowRepository;
 import com.example.demo.api.v1.cows.model.request.AddCowRequest;
+import com.example.demo.api.v1.cows.repository.CowRepository;
 import com.example.demo.validation.service.ValidateRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
