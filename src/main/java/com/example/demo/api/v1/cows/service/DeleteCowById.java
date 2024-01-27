@@ -22,7 +22,7 @@ public class DeleteCowById {
         log.info("Обработка запроса 'удалить корову по ее ID': {}", id);
         if (id < 1)
             throw new BadRequestException("ID коровы не может быть меньше 1");
-        var resultDeleted = cowRepository.deleteByIdEquals(id);
+        var resultDeleted = cowRepository.deleteCowById(id);
         if (resultDeleted == 0) {
             throw new NotFoundException("Корова с ID = " + id + " не найдена");
         } else return resultDeleted;

@@ -48,6 +48,6 @@ class GetAllCowsFarmerByFarmerIdTest {
     @ValueSource(longs = {1, 2, 3})
     @DisplayName("когда передаём не валидный id, будет выброшено исключение")
     void execute2(long id) {
-        assertThrows(BadRequestException.class, () -> service.execute(id));
+        assertThrows(BadRequestException.class, () -> service.execute(0));
     }
 }
