@@ -20,7 +20,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          checkstyle_config: sun_checks.xml
+          checkstyle_config: google_checks.xml
           fail_on_error: true
   tests:
     runs-on: ubuntu-latest
