@@ -1,4 +1,6 @@
 package com.example.demo.api.v1.farmes.model.entity;
+import com.example.demo.api.v1.farmes.model.request.UpdateFarmerDetailsRequest;
+import com.example.demo.api.v1.farmes.model.response.FarmerResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,4 +31,23 @@ public class FarmerEntity {
 
     @Column(name = "last_name")
     private String lastName;
+
+    public FarmerResponse toResponse() {
+        return new FarmerResponse(id, firstName, middleName, lastName);
+    }
+
+    public void update(UpdateFarmerDetailsRequest request) {
+        if (request.getId() != null) {
+            id = request.getId();
+        }
+        if (request.getFirstName() != null) {
+            firstName = request.getFirstName();
+        }
+        if (request.getMiddleName() != null) {
+            middleName = request.getMiddleName();
+        }
+        if (request.getLastName() != null) {
+            lastName = request.getLastName();
+        }
+    }
 }
