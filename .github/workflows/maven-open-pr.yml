@@ -1,4 +1,4 @@
-name: Java CI/CD with Maven on open PR
+name: open PR
 
 on:
   pull_request:

@@ -1,4 +1,4 @@
-name: Java CI/CD with Maven on merge PR
+name: deploy
 
 on:
   pull_request:
