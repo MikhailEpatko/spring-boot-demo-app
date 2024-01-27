@@ -2,8 +2,8 @@
 [![deploy](https://github.com/MikhailEpatko/spring-boot-demo-app/actions/workflows/maven-merge-pr.yml/badge.svg)](https://github.com/MikhailEpatko/spring-boot-demo-app/actions/workflows/maven-merge-pr.yml)
 
 
-# spring-boot-demo-app
-Ферма
+# Коровья Ферма
+
 
 
 ### Swagger UI
