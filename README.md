@@ -1,5 +1,5 @@
 [![checkstyle](https://github.com/MikhailEpatko/spring-boot-demo-app/actions/workflows/checkstyle.yml/badge.svg)](https://github.com/MikhailEpatko/spring-boot-demo-app/actions/workflows/checkstyle.yml)
-[![deploy](https://github.com/MikhailEpatko/spring-boot-demo-app/actions/workflows/maven-merge-pr.yml/badge.svg)](https://github.com/MikhailEpatko/spring-boot-demo-app/actions/workflows/maven-merge-pr.yml)
+ [![deploy](https://github.com/MikhailEpatko/spring-boot-demo-app/actions/workflows/deploy.yml/badge.svg)](https://github.com/MikhailEpatko/spring-boot-demo-app/actions/workflows/deploy.yml)
 
 
 # Коровья Ферма
