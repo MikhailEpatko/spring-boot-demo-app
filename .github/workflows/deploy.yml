@@ -1,10 +1,10 @@
 name: deploy
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches: [ "main" ]
+#  pull_request:
+#    types:
+#      - closed
+#    branches: [ "main" ]
   push:
     branches: [ "main" ]
 
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   tests:
-    if: github.event.pull_request.merged == true
+#    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
@@ -33,7 +33,7 @@ jobs:
       run: mvn verify
 
   prepare-environment:
-    if: github.event.pull_request.merged == true
+#    if: github.event.pull_request.merged == true
     runs-on: self-hosted
     needs: tests
     steps:
@@ -45,7 +45,7 @@ jobs:
         run: sudo docker system prune -a -f
         
   deploy:
-    if: github.event.pull_request.merged == true
+#    if: github.event.pull_request.merged == true
     runs-on: self-hosted
     needs: prepare-environment
     steps:
