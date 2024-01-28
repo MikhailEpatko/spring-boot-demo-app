@@ -54,5 +54,5 @@ jobs:
           echo DATABASE_URL=${{ secrets.DATABASE_URL }} > .env
           echo DATABASE_USER=${{ secrets.DATABASE_USER }} >> .env
           echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} >> .env
-          sudo docker-compose up -d
+          sudo docker-compose -f ./docker/docker-compose.yml up -d
           sudo docker system prune -a -f

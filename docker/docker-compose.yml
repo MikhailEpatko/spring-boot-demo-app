@@ -19,13 +19,14 @@ services:
     image: postgres:15-alpine
     hostname: farm-db
     volumes:
+      - ./psql-entrypoint-initdb/:/docker-entrypoint-initdb.d/
       - farm-db:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: farm_db
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-    ports:
-      - "5432:5432"
+#    ports:
+#      - "5432"
     restart: unless-stopped
     networks:
       back:
