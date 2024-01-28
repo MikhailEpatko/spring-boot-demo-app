@@ -2,7 +2,7 @@ FROM maven:3.9.6-eclipse-temurin-17-focal AS build
 
 WORKDIR /wd
 
-COPY .. .
+COPY . .
 
 RUN mvn install -DskipTests
 
