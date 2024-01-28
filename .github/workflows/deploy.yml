@@ -39,8 +39,8 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
-      - name: stop and remove containers, networks
-        run: sudo docker-compose down farm-app
+      - name: stop app container
+        run: sudo docker-compose -f ./docker/docker-compose.yml down farm-app
         
   deploy:
 #    if: github.event.pull_request.merged == true
