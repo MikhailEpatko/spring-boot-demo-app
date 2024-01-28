@@ -3,6 +3,11 @@ version: '3.8'
 volumes:
   farm-db:
     driver: local
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  postgresql:
+  postgresql_data:
 
 networks:
   back:
@@ -25,6 +30,23 @@ services:
     networks:
       back:
 
+  sonarqube:
+    image: sonarqube:community
+    depends_on:
+      - farm-db
+    environment:
+      SONAR_JDBC_URL: ${SONAR_JDBC_URL}
+      SONAR_JDBC_USERNAME: ${SONAR_JDBC_USER}
+      SONAR_JDBC_PASSWORD: ${SONAR_JDBC_PASSWORD}
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    ports:
+      - "9000:9000"
+    networks:
+      back:
+
   farm-app:
     container_name: farm-app
     build:
@@ -36,9 +58,9 @@ services:
       - "80:8008"
     restart: on-failure
     environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - DATABASE_USER=${DATABASE_USER}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     networks:
       back:
 

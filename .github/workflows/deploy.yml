@@ -5,6 +5,8 @@ on:
     types:
       - closed
     branches: [ "main" ]
+  push:
+    branches: [ "main" ]
 
 concurrency:
   group: main
@@ -54,4 +56,7 @@ jobs:
           echo DATABASE_URL=${{ secrets.DATABASE_URL }} > .env
           echo DATABASE_USER=${{ secrets.DATABASE_USER }} >> .env
           echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} >> .env
-          sudo docker-compose up -d farm-app
+          echo SONAR_JDBC_URL=${{ secrets.SONAR_JDBC_URL }} >> .env
+          echo SONAR_JDBC_USER=${{ secrets.SONAR_JDBC_USER }} >> .env
+          echo SONAR_JDBC_PASSWORD=${{ secrets.SONAR_JDBC_PASSWORD }} >> .env
+          sudo docker-compose up -d
