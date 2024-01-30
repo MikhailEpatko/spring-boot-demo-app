@@ -24,7 +24,7 @@ class UpdateCowDetailsRequestTest {
     @Test
     @DisplayName("При проверке валидного запроса не будет выброшено исключение")
     void validateUpdateRequest1() {
-        var request = new UpdateCowDetailsRequest(1L, 1L, "name", RED, 1, OK);
+        var request = new UpdateCowDetailsRequest(1L, "name", RED, 1, OK);
 
         assertDoesNotThrow(() -> validate.single(request));
     }
@@ -32,7 +32,7 @@ class UpdateCowDetailsRequestTest {
     @Test
     @DisplayName("Если id коровы null должно быть выброшено исключение")
     void validateUpdateRequest2() {
-        var request = new UpdateCowDetailsRequest(null, 1L, "name", RED, 1, OK);
+        var request = new UpdateCowDetailsRequest(null, "name", RED, 1, OK);
         var expectedError = "id: Не может быть null";
 
         var exception = assertThrows(ConstraintViolationException.class,
@@ -45,21 +45,8 @@ class UpdateCowDetailsRequestTest {
     @Test
     @DisplayName("Если id коровы меньше 1, должно быть выброшено исключение")
     void validateUpdateRequest3() {
-        var request = new UpdateCowDetailsRequest(0L, 1L, "name", RED, 1, OK);
+        var request = new UpdateCowDetailsRequest(0L, "name", RED, 1, OK);
         var expectedError = "id: Не может быть меньше 1";
-
-        var exception = assertThrows(ConstraintViolationException.class,
-                () -> validate.single(request)
-        );
-        assertNotNull(exception);
-        assertEquals(expectedError, exception.getMessage());
-    }
-
-    @Test
-    @DisplayName("Если id фермера меньше 1, должно быть выброшено исключение")
-    void validateUpdateRequest4() {
-        var request = new UpdateCowDetailsRequest(1L, 0L, "name", RED, 1, OK);
-        var expectedError = "farmerId: Не может быть меньше 1";
 
         var exception = assertThrows(ConstraintViolationException.class,
                 () -> validate.single(request)
@@ -72,7 +59,7 @@ class UpdateCowDetailsRequestTest {
     @ValueSource(strings = {"", " ", "  ", "   ", "\n", "\t"})
     @DisplayName("Если имя коровы пустое или состоит из пробельных символов, должно быть выброшено исключение")
     void validateUpdateRequest5(String name) {
-        var request = new UpdateCowDetailsRequest(1L, 1L, name, RED, 1, OK);
+        var request = new UpdateCowDetailsRequest(1L, name, RED, 1, OK);
         var expectedError = "name: Не может быть пустым или состоять из пробельных символов";
 
         var exception = assertThrows(ConstraintViolationException.class,
@@ -86,7 +73,7 @@ class UpdateCowDetailsRequestTest {
     @Test
     @DisplayName("Если удой коровы меньше 0л, должно быть выброшено исключение")
     void validateUpdateRequest6() {
-        var request = new UpdateCowDetailsRequest(1L, 1L, "name", RED, -1, OK);
+        var request = new UpdateCowDetailsRequest(1L, "name", RED, -1, OK);
         var expectedError = "liters: Не может быть меньше 0";
 
         var exception = assertThrows(ConstraintViolationException.class,

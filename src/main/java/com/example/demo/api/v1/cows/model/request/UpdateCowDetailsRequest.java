@@ -20,9 +20,6 @@ public class UpdateCowDetailsRequest {
     @Min(value = 1L, message = "Не может быть меньше 1")
     private Long id;
 
-    @Min(value = 1L, message = "Не может быть меньше 1")
-    private Long farmerId;
-
     @NullableNotBlank
     private String name;
 
