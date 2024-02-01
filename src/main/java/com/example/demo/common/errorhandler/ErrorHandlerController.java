@@ -5,6 +5,7 @@ import com.example.demo.common.exceptions.NotFoundException;
 import com.example.demo.validation.model.ErrorResponse;
 import com.example.demo.validation.model.Violation;
 import jakarta.validation.ConstraintViolationException;
+import static java.util.Collections.singletonList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import static java.util.Collections.singletonList;
 
 @Slf4j
 @RestControllerAdvice

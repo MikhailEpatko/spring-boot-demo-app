@@ -5,11 +5,14 @@ import com.example.demo.api.v1.cows.model.request.AddCowRequest;
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.model.response.FullCowResponse;
 import com.example.demo.api.v1.cows.model.response.ShortCowResponse;
-import com.example.demo.api.v1.cows.service.*;
-
+import com.example.demo.api.v1.cows.service.AddCowToFarmer;
+import com.example.demo.api.v1.cows.service.DeleteCowById;
+import com.example.demo.api.v1.cows.service.GetAllCows;
+import com.example.demo.api.v1.cows.service.GetAllCowsFarmerByFarmerId;
+import com.example.demo.api.v1.cows.service.GetCowById;
+import com.example.demo.api.v1.cows.service.UpdateCow;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

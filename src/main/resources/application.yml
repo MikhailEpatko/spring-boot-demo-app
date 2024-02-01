@@ -18,7 +18,7 @@ spring:
     deserialization:
       read-date-timestamps-as-nanoseconds: false
   datasource:
-    url: ${DATABASE_URL:'jdbc:postgresql://localhost:5432/farm_db'}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/farm_db}
     username: ${DATABASE_USER:kate}
     password: ${DATABASE_PASSWORD:password}
     driver-class-name: org.postgresql.Driver
