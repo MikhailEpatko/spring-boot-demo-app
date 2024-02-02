@@ -1,5 +1,7 @@
 package com.example.demo.common.errorhandler;
 
+import static java.util.Collections.singletonList;
+
 import com.example.demo.common.exceptions.BadRequestException;
 import com.example.demo.common.exceptions.NotFoundException;
 import com.example.demo.validation.model.ErrorResponse;
@@ -12,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import static java.util.Collections.singletonList;
 
 @Slf4j
 @RestControllerAdvice
