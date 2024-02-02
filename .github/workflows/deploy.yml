@@ -72,7 +72,7 @@ jobs:
   prepare-environment:
 #    if: github.event.pull_request.merged == true
     runs-on: self-hosted
-    needs: sonarqube
+    needs: tests
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
