@@ -13,9 +13,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  verify:
+    name: Check Code Quality
+    runs-on: ubuntu-latest
+    permissions: read-all
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: dbelyaev/action-checkstyle@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          checkstyle_config: ./checkstyle.xml
+          fail_on_error: true
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
   tests:
+    name: Run Tests
 #    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    needs: verify
     steps:
     - name: checkout repo
       uses: actions/checkout@v4
@@ -33,6 +54,7 @@ jobs:
       run: mvn verify
 
   prepare-environment:
+    name: Prepare Environment
 #    if: github.event.pull_request.merged == true
     runs-on: self-hosted
     needs: tests
@@ -43,6 +65,7 @@ jobs:
         run: sudo docker-compose -f ./docker/docker-compose.yml down farm-app
         
   deploy:
+    name: Deploy
 #    if: github.event.pull_request.merged == true
     runs-on: self-hosted
     needs: prepare-environment

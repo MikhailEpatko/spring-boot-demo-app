@@ -3,14 +3,6 @@ version: '3.8'
 volumes:
   farm-db:
     driver: local
-  sonarqube_data:
-  sonarqube_extensions:
-  sonarqube_logs:
-  postgresql:
-  postgresql_data:
-
-networks:
-  back:
 
 services:
 
@@ -25,11 +17,9 @@ services:
       POSTGRES_DB: farm_db
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-#    ports:
-#      - "5432"
+    ports:
+      - "127.0.0.1:5432:5432"
     restart: unless-stopped
-    networks:
-      back:
 
   farm-app:
     container_name: farm-app
@@ -45,7 +35,3 @@ services:
     ports:
       - "80:8008"
     restart: on-failure
-    networks:
-      back:
-
-
