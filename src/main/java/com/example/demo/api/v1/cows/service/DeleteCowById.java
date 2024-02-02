@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 public class DeleteCowById {
 
     private final CowRepository cowRepository;
-    private final ValidateRequest validate;
-
 
     @Transactional
     public void execute(long id) {

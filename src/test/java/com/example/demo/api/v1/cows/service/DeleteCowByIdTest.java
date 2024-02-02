@@ -19,13 +19,14 @@ class DeleteCowByIdTest {
     private final CowRepository cows = mock(CowRepository.class);
     private final ValidateRequest valid = mock(ValidateRequest.class);
 
-    private final DeleteCowById service = new DeleteCowById(cows, valid);
+    private final DeleteCowById service = new DeleteCowById(cows);
 
     @ParameterizedTest
     @ValueSource(longs = {1, 2, 3})
     @DisplayName("Когда передаём валидный id, корова будет удалена, метод возвращает 1")
     void execude1(long id) {
         var expected = 1;
+
         when(cows.deleteCowById(id)).thenReturn(expected);
 
         service.execute(id);
