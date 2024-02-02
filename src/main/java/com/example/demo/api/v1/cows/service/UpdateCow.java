@@ -1,5 +1,7 @@
 package com.example.demo.api.v1.cows.service;
 
+
+
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.repository.CowRepository;
 import com.example.demo.common.exceptions.NotFoundException;
@@ -8,6 +10,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+
 import org.springframework.stereotype.Component;
 
 @Service
