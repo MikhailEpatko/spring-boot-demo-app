@@ -8,4 +8,8 @@
 
 ### Swagger UI
 
-http://localhost:8008/swagger-ui/index.html#
+http://81.94.159.238/swagger-ui/index.html#/
+
+### Sonarqube UI
+
+http://81.94.159.238:9000
