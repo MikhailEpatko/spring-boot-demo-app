@@ -27,5 +27,5 @@ public interface CowsApi {
     void updateCowDetails(UpdateCowDetailsRequest request);
 
     @Operation(summary = "Удалить корову")
-    int deleteCow(long id);
+    void deleteCow(long id);
 }

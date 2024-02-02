@@ -1,6 +1,5 @@
 package com.example.demo.api.v1.cows.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -29,8 +28,7 @@ class DeleteCowByIdTest {
         var expected = 1;
         when(cows.deleteCowById(id)).thenReturn(expected);
 
-        var result = service.execute(id);
-        assertEquals(expected, result);
+        service.execute(id);
         assertTrue(cows.findById(id).isEmpty());
     }
 
