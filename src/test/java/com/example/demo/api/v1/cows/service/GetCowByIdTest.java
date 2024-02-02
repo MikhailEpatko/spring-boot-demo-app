@@ -1,21 +1,21 @@
 package com.example.demo.api.v1.cows.service;
 
-import com.example.demo.api.v1.cows.model.entity.CowEntity;
-import com.example.demo.api.v1.cows.repository.CowRepository;
-import com.example.demo.common.exceptions.BadRequestException;
-import com.example.demo.common.exceptions.NotFoundException;
-import com.example.demo.validation.service.ValidateRequest;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import com.example.demo.api.v1.cows.model.entity.CowEntity;
+import com.example.demo.api.v1.cows.repository.CowRepository;
+import com.example.demo.common.exceptions.BadRequestException;
+import com.example.demo.common.exceptions.NotFoundException;
+import com.example.demo.validation.service.ValidateRequest;
+import java.util.Optional;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class GetCowByIdTest {
 
@@ -46,11 +46,9 @@ class GetCowByIdTest {
         assertThrows(BadRequestException.class, () -> service.execute(id));
     }
 
-    @ParameterizedTest
-    @ValueSource(longs = {2, 3})
+    @Test
     @DisplayName("когда передаём id которого нет в базе, должно быть выброшено исключение")
-    void execute3(long id) {
-
+    void execute3() {
         assertThrows(NotFoundException.class, () -> service.execute(1L));
     }
 }

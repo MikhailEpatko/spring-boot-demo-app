@@ -1,5 +1,10 @@
 package com.example.demo.api.v1.cows.repository;
 
+import static com.example.demo.api.v1.cows.model.enums.Color.RED;
+import static com.example.demo.api.v1.cows.model.enums.CowStatus.OK;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.example.demo.api.v1.cows.model.entity.CowEntity;
 import com.example.demo.api.v1.farmes.model.entity.FarmerEntity;
 import com.example.demo.api.v1.farmes.repository.FarmerRepository;
@@ -8,11 +13,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import static com.example.demo.api.v1.cows.model.enums.Color.RED;
-import static com.example.demo.api.v1.cows.model.enums.CowStatus.OK;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class CowRepositoryTest implements BasicIT {
@@ -32,20 +32,20 @@ class CowRepositoryTest implements BasicIT {
     @DisplayName("По id фермера должны найти всех его коров")
     void findAllByFarmerId1() {
         var farmer1 = farmers.save(
-            new FarmerEntity(null, "Mikl", "Ivanovich", "Duglas")
+                new FarmerEntity(null, "Mikl", "Ivanovich", "Duglas")
         );
         var cow11 = cows.save(
-            new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
         );
         var cow12 = cows.save(
-            new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
         );
 
         var farmer2 = farmers.save(
-            new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
+                new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
         );
         var cow21 = cows.save(
-            new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
         );
         var expected = List.of(cow11, cow12);
 
@@ -58,13 +58,13 @@ class CowRepositoryTest implements BasicIT {
     @DisplayName("Если у фермера нет коров, должен вернуться пустой список")
     void findAllByFarmerId2() {
         var farmer1 = farmers.save(
-            new FarmerEntity(null, "Mikl", "Ivanovich", "Duglas")
+                new FarmerEntity(null, "Mikl", "Ivanovich", "Duglas")
         );
         var farmer2 = farmers.save(
-            new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
+                new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
         );
         var cow21 = cows.save(
-            new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
         );
 
         var result = cows.findAllByFarmerId(farmer1.getId());
@@ -76,10 +76,10 @@ class CowRepositoryTest implements BasicIT {
     @DisplayName("Если фермера c таким id нет, должен вернуться пустой список")
     void findAllByFarmerId3() {
         var farmer2 = farmers.save(
-            new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
+                new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
         );
         var cow21 = cows.save(
-            new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
         );
 
         var result = cows.findAllByFarmerId(0);
@@ -91,20 +91,20 @@ class CowRepositoryTest implements BasicIT {
     @DisplayName("Если корова с таким id есть, то она будет удалена и метод вернёт 1")
     void deleteCowById1() {
         var farmer1 = farmers.save(
-            new FarmerEntity(null, "Mikl", "Ivanovich", "Duglas")
+                new FarmerEntity(null, "Mikl", "Ivanovich", "Duglas")
         );
         var cow11 = cows.save(
-            new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
         );
         var cow12 = cows.save(
-            new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
         );
 
         var farmer2 = farmers.save(
-            new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
+                new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
         );
         var cow21 = cows.save(
-            new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
         );
         var expected = 1;
 
@@ -118,20 +118,20 @@ class CowRepositoryTest implements BasicIT {
     @DisplayName("Если коровы с таким id нет, то метод вернёт 0")
     void deleteCowById2() {
         var farmer1 = farmers.save(
-            new FarmerEntity(null, "Mikl", "Ivanovich", "Duglas")
+                new FarmerEntity(null, "Mikl", "Ivanovich", "Duglas")
         );
         var cow11 = cows.save(
-            new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
         );
         var cow12 = cows.save(
-            new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer1.getId(), "Elka", RED, 15, OK)
         );
 
         var farmer2 = farmers.save(
-            new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
+                new FarmerEntity(null, "Jon", "Anatolyevich", "Bjovi")
         );
         var cow21 = cows.save(
-            new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
+                new CowEntity(null, farmer2.getId(), "Elka", RED, 15, OK)
         );
         var expected = 0;
 

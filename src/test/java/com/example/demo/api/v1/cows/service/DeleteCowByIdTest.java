@@ -1,19 +1,19 @@
 package com.example.demo.api.v1.cows.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.example.demo.api.v1.cows.repository.CowRepository;
 import com.example.demo.common.exceptions.BadRequestException;
 import com.example.demo.common.exceptions.NotFoundException;
 import com.example.demo.validation.service.ValidateRequest;
 import org.junit.jupiter.api.DisplayName;
-
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class DeleteCowByIdTest {
 
@@ -42,11 +42,9 @@ class DeleteCowByIdTest {
         assertThrows(BadRequestException.class, () -> service.execute(id));
     }
 
-    @ParameterizedTest
-    @ValueSource(longs = {1, 2})
+    @Test
     @DisplayName("Если id коровы не найдено в базе, будет выброшено исключение")
-    void execute3(long id) {
-
+    void execute3() {
         assertThrows(NotFoundException.class, () -> service.execute(3L));
     }
 }

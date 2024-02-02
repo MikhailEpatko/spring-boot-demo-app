@@ -1,5 +1,10 @@
 package com.example.demo.api.v1.cows.model.request;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.example.demo.api.v1.cows.model.enums.Color;
 import com.example.demo.api.v1.cows.model.enums.CowStatus;
 import com.example.demo.validation.service.ValidateRequest;
@@ -8,11 +13,6 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddCowRequestTest {
 
@@ -34,8 +34,8 @@ class AddCowRequestTest {
         var expectedError = "farmerId: Не может быть меньше 1";
 
         var ex = assertThrows(
-            ConstraintViolationException.class,
-            () -> validate.single(request)
+                ConstraintViolationException.class,
+                () -> validate.single(request)
         );
 
         assertNotNull(ex);
@@ -49,8 +49,8 @@ class AddCowRequestTest {
         var expectedError = "farmerId: Не может быть null";
 
         var ex = assertThrows(
-            ConstraintViolationException.class,
-            () -> validate.single(request)
+                ConstraintViolationException.class,
+                () -> validate.single(request)
         );
 
         assertNotNull(ex);

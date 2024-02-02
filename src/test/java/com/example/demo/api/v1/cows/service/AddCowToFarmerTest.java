@@ -1,13 +1,5 @@
 package com.example.demo.api.v1.cows.service;
 
-import com.example.demo.api.v1.cows.model.entity.CowEntity;
-import com.example.demo.api.v1.cows.model.request.AddCowRequest;
-import com.example.demo.api.v1.cows.repository.CowRepository;
-import com.example.demo.common.exceptions.LightWeightExceptions;
-import com.example.demo.validation.service.ValidateRequest;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -17,6 +9,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import com.example.demo.api.v1.cows.model.entity.CowEntity;
+import com.example.demo.api.v1.cows.model.request.AddCowRequest;
+import com.example.demo.api.v1.cows.repository.CowRepository;
+import com.example.demo.common.exceptions.LightWeightExceptions;
+import com.example.demo.validation.service.ValidateRequest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class AddCowToFarmerTest {
 
@@ -28,8 +28,8 @@ class AddCowToFarmerTest {
     @Test
     @DisplayName("При получении валидного запроса корова добавится успешно")
     void execute1() {
-        var request = new AddCowRequest();
-        var expectedCow = request.toEntity();
+        final var request = new AddCowRequest();
+        final var expectedCow = request.toEntity();
 
         doNothing().when(validate).single(any());
         when(cows.save(any())).thenReturn(new CowEntity());
@@ -48,8 +48,8 @@ class AddCowToFarmerTest {
         doThrow(new LightWeightExceptions("123")).when(validate).single(any());
 
         var ex = assertThrows(
-            LightWeightExceptions.class,
-            () -> service.execute(request)
+                LightWeightExceptions.class,
+                () -> service.execute(request)
         );
 
         assertEquals("123", ex.getMessage());

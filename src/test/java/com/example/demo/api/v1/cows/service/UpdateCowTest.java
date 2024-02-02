@@ -1,24 +1,23 @@
 package com.example.demo.api.v1.cows.service;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.example.demo.api.v1.cows.model.entity.CowEntity;
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.repository.CowRepository;
 import com.example.demo.common.exceptions.LightWeightExceptions;
 import com.example.demo.common.exceptions.NotFoundException;
 import com.example.demo.validation.service.ValidateRequest;
+import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.doThrow;
 
 class UpdateCowTest {
 
@@ -31,12 +30,12 @@ class UpdateCowTest {
     @DisplayName("При получении валидного запроса, обновление происходит успешно")
     void execute1() {
 
-        var request = new UpdateCowDetailsRequest();
+        final var request = new UpdateCowDetailsRequest();
 
 
         doNothing().when(valid).single(any());
 
-        when(cows.findById(any())).thenReturn(Optional.of(new  CowEntity()));
+        when(cows.findById(any())).thenReturn(Optional.of(new CowEntity()));
         when(cows.save(any())).thenReturn(new CowEntity());
 
         service.execute(request);

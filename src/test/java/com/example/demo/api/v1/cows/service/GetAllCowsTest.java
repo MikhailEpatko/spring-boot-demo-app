@@ -1,15 +1,14 @@
 package com.example.demo.api.v1.cows.service;
 
-import com.example.demo.api.v1.cows.model.entity.CowEntity;
-import com.example.demo.api.v1.cows.repository.CowRepository;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import com.example.demo.api.v1.cows.model.entity.CowEntity;
+import com.example.demo.api.v1.cows.repository.CowRepository;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class GetAllCowsTest {
 
