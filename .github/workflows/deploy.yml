@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  verify:
+  code-quality-check:
     runs-on: ubuntu-latest
     permissions: read-all
     steps:
@@ -64,7 +64,7 @@ jobs:
   tests:
 #    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    needs: verify
+    needs: code-quality-check
     steps:
     - name: checkout repo
       uses: actions/checkout@v4
