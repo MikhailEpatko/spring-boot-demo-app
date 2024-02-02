@@ -13,6 +13,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  checkstyle:
+    name: runner / checkstyle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dbelyaev/action-checkstyle@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          checkstyle_config: ./checkstyle.xml
+          fail_on_error: true
   tests:
 #    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
@@ -31,7 +42,28 @@ jobs:
         token: ${{ secrets.TC_CLOUD_TOKEN }}
     - name: run the Maven verify phase
       run: mvn verify
-
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: sonarQube scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - name: sonarQube quality gate check
+        id: sonarqube-quality-gate-check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # Optionally you can use the output from the Quality Gate in another step.
+      # The possible outputs of the `quality-gate-status` variable are `PASSED`, `WARN` or `FAILED`.
+      - name: "Example show SonarQube Quality Gate Status value"
+        run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
   prepare-environment:
 #    if: github.event.pull_request.merged == true
     runs-on: self-hosted
