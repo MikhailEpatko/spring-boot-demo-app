@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  code-quality-check:
+  checkstyle:
     runs-on: ubuntu-latest
     permissions: read-all
     steps:
@@ -26,6 +26,13 @@ jobs:
           reporter: github-check
           checkstyle_config: ./checkstyle.xml
           fail_on_error: true
+  sonarqube:
+    runs-on: ubuntu-latest
+    permissions: read-all
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
