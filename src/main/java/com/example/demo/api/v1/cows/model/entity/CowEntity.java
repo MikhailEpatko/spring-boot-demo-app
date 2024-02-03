@@ -51,8 +51,6 @@ public class CowEntity {
     }
 
     public void update(UpdateCowDetailsRequest request) {
-        if (request.getFarmerId() != null)
-            farmerId = request.getFarmerId();
         if (request.getName() != null)
             name = request.getName();
         if (request.getColor() != null)
