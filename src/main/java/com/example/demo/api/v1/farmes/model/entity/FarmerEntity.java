@@ -1,4 +1,5 @@
 package com.example.demo.api.v1.farmes.model.entity;
+
 import com.example.demo.api.v1.farmes.model.request.UpdateFarmerDetailsRequest;
 import com.example.demo.api.v1.farmes.model.response.FarmerResponse;
 import jakarta.persistence.Column;
