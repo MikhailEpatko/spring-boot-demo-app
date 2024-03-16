@@ -1,4 +1,4 @@
-name: HoC badge
+name: LoC badge
 on:
   push:
     branches: [ "main" ]
@@ -15,6 +15,6 @@ jobs:
       - name: Deploy badge to image-data branch
         uses: peaceiris/actions-gh-pages@v3.9.3
         with:
-          publish_dir: ./output
-          publish_branch: image-data
+          publish_dir: ./output-loc
+          publish_branch: loc-badge
           github_token: ${{ github.token }}

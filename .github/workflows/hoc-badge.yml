@@ -15,6 +15,6 @@ jobs:
           output_dir: output-dir
       - uses: peaceiris/actions-gh-pages@v3.9.3
         with:
-          publish_dir: output-dir
-          publish_branch: image-data
+          publish_dir: output-hoc
+          publish_branch: hoc-badge
           github_token: ${{ github.token }}
