@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: MikhailEpatko/hoc-badge-action
+      - uses: MikhailEpatko/hoc-badge-action@v3.0.6
         with:
           dir: .
           since: 2000-01-01

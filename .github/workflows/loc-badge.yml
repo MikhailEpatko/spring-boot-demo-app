@@ -8,8 +8,7 @@ jobs:
     name: A job to count lines of code
     steps:
       - uses: actions/checkout@v4
-      - id: counter
-        uses: MikhailEpatko/loc-badge-action
+      - uses: MikhailEpatko/loc-badge-action@v2.0.0
         with:
           include-files: '.*\**'
           exclude-files: ''
