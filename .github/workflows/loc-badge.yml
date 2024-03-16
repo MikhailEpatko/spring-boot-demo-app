@@ -1,0 +1,21 @@
+name: HoC badge
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  lines_counter_job:
+    runs-on: ubuntu-latest
+    name: A job to count lines of code
+    steps:
+      - uses: actions/checkout@v4
+      - id: counter
+        uses: MikhailEpatko/loc-badge-action
+        with:
+          include-files: '.*\**'
+          exclude-files: ''
+      - name: Deploy badge to image-data branch
+        uses: peaceiris/actions-gh-pages@v3.9.3
+        with:
+          publish_dir: ./output
+          publish_branch: image-data
+          github_token: ${{ github.token }}
