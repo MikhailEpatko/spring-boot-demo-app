@@ -1,0 +1,29 @@
+name: HoC badge
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+
+  tests_job:
+    name: Test scripts
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ludeeus/action-shellcheck@master
+      - uses: articulate/actions-markdownlint@v1.1.0
+
+  hits_counter_job:
+    name: Generate and deploy HoC-badge
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: MikhailEpatko/hoc-badge-action
+        with:
+          dir: .
+          since: 2000-01-01
+          output_dir: output-dir
+      - uses: peaceiris/actions-gh-pages@v3.9.3
+        with:
+          publish_dir: output-dir
+          publish_branch: image-data
+          github_token: ${{ github.token }}
