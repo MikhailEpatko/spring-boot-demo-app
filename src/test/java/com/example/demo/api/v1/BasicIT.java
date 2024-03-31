@@ -19,10 +19,10 @@ public interface BasicIT {
         postgres.start();
     }
 
-//    @AfterAll
-//    static void afterAll() {
-//        postgres.stop();
-//    }
+    @AfterAll
+    static void afterAll() {
+        postgres.stop();
+    }
 
     @Container
     PostgreSQLContainer<?> postgres =
