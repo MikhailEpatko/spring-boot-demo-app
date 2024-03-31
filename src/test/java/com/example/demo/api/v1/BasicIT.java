@@ -1,4 +1,4 @@
-package com.example.demo.api.v1.cows.repository;
+package com.example.demo.api.v1;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,10 +19,10 @@ public interface BasicIT {
         postgres.start();
     }
 
-    @AfterAll
-    static void afterAll() {
-        postgres.stop();
-    }
+//    @AfterAll
+//    static void afterAll() {
+//        postgres.stop();
+//    }
 
     @Container
     PostgreSQLContainer<?> postgres =

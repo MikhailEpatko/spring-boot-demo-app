@@ -5,6 +5,7 @@ import static com.example.demo.api.v1.cows.model.enums.CowStatus.OK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.example.demo.api.v1.BasicIT;
 import com.example.demo.api.v1.cows.model.entity.CowEntity;
 import com.example.demo.api.v1.farmes.model.entity.FarmerEntity;
 import com.example.demo.api.v1.farmes.repository.FarmerRepository;
