@@ -22,8 +22,12 @@ class UpdateFarmerDetailsRequestTest {
     @Test
     @DisplayName("При проверке валидного запроса не будет выброшено исключение")
     void validateUpdateRequest1() {
-        var request = new UpdateFarmerDetailsRequest
-                (1L, "FirstName", "MiddleName", "LastName");
+        var request = new UpdateFarmerDetailsRequest(
+                1L,
+                "FirstName",
+                "MiddleName",
+                "LastName"
+        );
 
         assertDoesNotThrow(() -> validate.single(request));
     }
@@ -31,8 +35,12 @@ class UpdateFarmerDetailsRequestTest {
     @Test
     @DisplayName("Если id фермера null, должно быть выброшено исключение")
     void validateUpdateRequest2() {
-        var request = new UpdateFarmerDetailsRequest
-                (null, "firstName", "MiddleName", "LastName");
+        var request = new UpdateFarmerDetailsRequest(
+                null,
+                "firstName",
+                "MiddleName",
+                "LastName"
+        );
         var expectedError = "id: Не может быть null";
 
         var exception = assertThrows(ConstraintViolationException.class,
@@ -45,8 +53,12 @@ class UpdateFarmerDetailsRequestTest {
     @Test
     @DisplayName("Если id фермера меньше единицы, должно быть выброшено исключение")
     void validateUpdateRequest3() {
-        var request = new UpdateFarmerDetailsRequest
-                (0L, "firstName", "MiddleName", "LastName");
+        var request = new UpdateFarmerDetailsRequest(
+                0L,
+                "firstName",
+                "MiddleName",
+                "LastName"
+        );
         var expectedError = "id: Не может быть меньше 1";
 
         var exception = assertThrows(ConstraintViolationException.class,

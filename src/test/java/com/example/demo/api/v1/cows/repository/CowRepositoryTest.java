@@ -11,12 +11,13 @@ import com.example.demo.api.v1.farmes.model.entity.FarmerEntity;
 import com.example.demo.api.v1.farmes.repository.FarmerRepository;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-class CowRepositoryTest implements BasicIT {
+class CowRepositoryTest extends BasicIT {
 
     @Autowired
     private CowRepository cows;
@@ -25,7 +26,8 @@ class CowRepositoryTest implements BasicIT {
     private FarmerRepository farmers;
 
     @AfterEach
-    void tearDown() {
+    @BeforeEach
+    void clear() {
         farmers.deleteAll();
     }
 

@@ -44,8 +44,12 @@ class AddFarmerRequestTest {
     @Test
     @DisplayName("Если id фермера null, должно быть выброшено исключение")
     void validateRequest3() {
-        var request = new AddFarmerRequest
-                (null, "FirstName", "MiddleName", "LastName");
+        var request = new AddFarmerRequest(
+                null,
+                "FirstName",
+                "MiddleName",
+                "LastName"
+        );
         var expectedError = "id: Не может быть null";
 
         var ex = assertThrows(
