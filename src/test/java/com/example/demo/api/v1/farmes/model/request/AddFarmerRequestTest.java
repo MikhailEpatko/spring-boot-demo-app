@@ -8,8 +8,8 @@ import com.example.demo.validation.service.ValidateRequest;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -43,8 +43,12 @@ class AddFarmerRequestTest {
     @Test
     @DisplayName("Если id фермера null, должно быть выброшено исключение")
     void validateRequest3() {
-        var request = new AddFarmerRequest
-                (null, "FirstName", "MiddleName", "LastName");
+        var request = new AddFarmerRequest(
+                null,
+                "FirstName",
+                "MiddleName",
+                "LastName"
+        );
         var expectedError = "id: Не может быть null";
 
         var ex = assertThrows(
