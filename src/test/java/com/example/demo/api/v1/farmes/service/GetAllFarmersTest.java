@@ -20,8 +20,8 @@ class GetAllFarmersTest {
 
         var farmer1 = new FarmerEntity();
         var farmer2 = new FarmerEntity();
-        var farmre3 = new FarmerEntity();
-        var expected = List.of(farmer1, farmer2, farmre3);
+        var farmer3 = new FarmerEntity();
+        var expected = List.of(farmer1, farmer2, farmer3);
         when(farmers.findAll()).thenReturn(expected);
 
         var result = service.execute();
