@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.example.demo.api.v1.BasicIT;
 import com.example.demo.api.v1.farmes.model.entity.FarmerEntity;
 import com.example.demo.api.v1.farmes.model.request.UpdateFarmerDetailsRequest;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
@@ -22,11 +20,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FarmersControllerTest extends BasicIT {
 
@@ -65,7 +58,7 @@ class FarmersControllerTest extends BasicIT {
                 )
         );
         ResponseEntity<List<FarmerEntity>> response = restTemplate.exchange(
-                "/v1/farmers/farmers",
+                "/v1/farmers/",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<FarmerEntity>>() {
@@ -87,7 +80,7 @@ class FarmersControllerTest extends BasicIT {
                 )
         );
         var farmerResponse = restTemplate.getForObject(
-                "/v1/farmers/farmers/{id}",
+                "/v1/farmers/{id}",
                 FarmerEntity.class,
                 farmer1.getId()
         );
@@ -106,7 +99,7 @@ class FarmersControllerTest extends BasicIT {
         );
 
         var response = restTemplate.postForEntity(
-                "/v1/farmers/farmers",
+                "/v1/farmers/",
                 farmer1,
                 FarmerEntity.class
         );
@@ -136,7 +129,7 @@ class FarmersControllerTest extends BasicIT {
         HttpEntity<FarmerEntity> entity = new HttpEntity<FarmerEntity>(farmer1);
 
         ResponseEntity<FarmerEntity> response = restTemplate.exchange(
-                "/v1/farmers/farmers",
+                "/v1/farmers/",
                 HttpMethod.PUT,
                 entity,
                 FarmerEntity.class,
@@ -159,7 +152,7 @@ class FarmersControllerTest extends BasicIT {
         );
 
         ResponseEntity<FarmerEntity> response = restTemplate.exchange(
-                "/v1/farmers/farmers/{id}",
+                "/v1/farmers/{id}",
                 HttpMethod.DELETE,
                 null,
                 FarmerEntity.class,
