@@ -38,9 +38,6 @@ public class FarmerEntity {
     }
 
     public void update(UpdateFarmerDetailsRequest request) {
-        if (request.getId() != null) {
-            id = request.getId();
-        }
         if (request.getFirstName() != null) {
             firstName = request.getFirstName();
         }

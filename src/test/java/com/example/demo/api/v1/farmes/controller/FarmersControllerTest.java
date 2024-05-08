@@ -42,7 +42,7 @@ class FarmersControllerTest implements BasicIT {
                 new FarmerEntity(null, "firstName", "middleName", "lastName"));
         var farmer2 = farmers.save(
                 new FarmerEntity(null, "secondName", "MiddleName", "LastName"));
-        ResponseEntity<List<FarmerEntity>> response = restTemplate.exchange("/v1/farmers/farmers",
+        ResponseEntity<List<FarmerEntity>> response = restTemplate.exchange("/v1/farmers/",
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<FarmerEntity>>() {
                 });
         List<FarmerEntity> farmersList = response.getBody();
@@ -54,7 +54,7 @@ class FarmersControllerTest implements BasicIT {
     void farmerById() {
         var farmer1 = farmers.save
                 (new FarmerEntity(null, "firstName", "middleName", "lastName"));
-        var farmerResponse = restTemplate.getForObject("/v1/farmers/farmers/{id}", FarmerEntity.class,
+        var farmerResponse = restTemplate.getForObject("/v1/farmers/{id}", FarmerEntity.class,
                 farmer1.getId());
         assertThat(farmerResponse.getFirstName(), is("firstName"));
     }
@@ -64,7 +64,7 @@ class FarmersControllerTest implements BasicIT {
         var farmer1 = farmers.save
                 (new FarmerEntity(null, "firstName", "middleName", "lastName"));
 
-        var response = restTemplate.postForEntity("/v1/farmers/farmers", farmer1,
+        var response = restTemplate.postForEntity("/v1/farmers/", farmer1,
                 FarmerEntity.class);
 
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
@@ -82,7 +82,7 @@ class FarmersControllerTest implements BasicIT {
         HttpEntity<FarmerEntity> entity = new HttpEntity<FarmerEntity>(farmer1);
 
         ResponseEntity<FarmerEntity> response = restTemplate.
-                exchange("/v1/farmers/farmers", HttpMethod.PUT, entity, FarmerEntity.class, farmer1.getId());
+                exchange("/v1/farmers/", HttpMethod.PUT, entity, FarmerEntity.class, farmer1.getId());
 
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertEquals(farmer1.getFirstName(), "superName");
@@ -93,7 +93,7 @@ class FarmersControllerTest implements BasicIT {
         var farmer1 = farmers.save(
                 new FarmerEntity(null, "firstName", "middleName", "lastName"));
 
-        ResponseEntity<FarmerEntity> response = restTemplate.exchange("/v1/farmers/farmers/{id}",
+        ResponseEntity<FarmerEntity> response = restTemplate.exchange("/v1/farmers/{id}",
                 HttpMethod.DELETE, null, FarmerEntity.class, farmer1.getId());
 
         assertEquals(HttpStatus.OK, response.getStatusCode());

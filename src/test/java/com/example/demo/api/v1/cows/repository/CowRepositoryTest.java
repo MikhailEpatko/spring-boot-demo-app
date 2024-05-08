@@ -4,7 +4,6 @@ import static com.example.demo.api.v1.cows.model.enums.Color.RED;
 import static com.example.demo.api.v1.cows.model.enums.CowStatus.OK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.example.demo.api.v1.BasicIT;
 import com.example.demo.api.v1.cows.model.entity.CowEntity;
 import com.example.demo.api.v1.farmes.model.entity.FarmerEntity;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 class CowRepositoryTest implements BasicIT {
 

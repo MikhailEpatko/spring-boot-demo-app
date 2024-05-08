@@ -10,7 +10,6 @@ import com.example.demo.api.v1.farmes.service.GetAllFarmers;
 import com.example.demo.api.v1.farmes.service.GetFarmerById;
 import com.example.demo.api.v1.farmes.service.UpdateFarmer;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,34 +31,34 @@ public class FarmersController implements FarmersApi {
     private final DeleteFarmerById deleteFarmerById;
     private final UpdateFarmer updateFarmer;
 
-    @GetMapping("/farmers")
+    @GetMapping("/")
     @Override
     public List<FarmerResponse> getAllFarmers() {
         return getAllFarmers.execute()
                 .stream()
                 .map((FarmerEntity::toResponse))
-                .collect(Collectors.toList());
+                .toList();
     }
 
-    @GetMapping("/farmers/{id}")
+    @GetMapping("/{id}")
     @Override
     public FarmerResponse farmer(@PathVariable long id) {
         return getFarmerById.execute(id).toResponse();
     }
 
-    @PostMapping("/farmers")
+    @PostMapping("/")
     @Override
     public void addFarmer(@RequestBody AddFarmerRequest request) {
         addFarmer.execute(request);
     }
 
-    @PutMapping("/farmers")
+    @PutMapping("/")
     @Override
     public void updateFarmerDetails(@RequestBody UpdateFarmerDetailsRequest request) {
         updateFarmer.execute(request);
     }
 
-    @DeleteMapping("/farmers/{id}")
+    @DeleteMapping("/{id}")
     @Override
     public void deleteFarmer(@PathVariable long id) {
         deleteFarmerById.execute(id);

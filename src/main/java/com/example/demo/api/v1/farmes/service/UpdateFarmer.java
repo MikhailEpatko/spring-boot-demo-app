@@ -21,9 +21,9 @@ public class UpdateFarmer {
     public void execute(UpdateFarmerDetailsRequest request) {
         log.info("Обработка запроса 'обновить данные фермера': {}", request);
         validateRequest.single(request);
-        var updatedFarmer = farmerRepository.findById(request.getId())
+        var toUpdateFarmer = farmerRepository.findById(request.getId())
                 .orElseThrow(() -> new NotFoundException("Фермер с ID = " + request.getId() + " не найден"));
-        updatedFarmer.update(request);
-        farmerRepository.save(updatedFarmer);
+        toUpdateFarmer.update(request);
+        farmerRepository.save(toUpdateFarmer);
     }
 }

@@ -7,7 +7,6 @@ import com.example.demo.common.exceptions.LightWeightExceptions;
 import com.example.demo.validation.service.ValidateRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
