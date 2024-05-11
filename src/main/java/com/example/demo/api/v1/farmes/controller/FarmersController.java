@@ -31,7 +31,7 @@ public class FarmersController implements FarmersApi {
     private final DeleteFarmerById deleteFarmerById;
     private final UpdateFarmer updateFarmer;
 
-    @GetMapping("/")
+    @GetMapping
     @Override
     public List<FarmerResponse> getAllFarmers() {
         return getAllFarmers.execute()
@@ -46,13 +46,13 @@ public class FarmersController implements FarmersApi {
         return getFarmerById.execute(id).toResponse();
     }
 
-    @PostMapping("/")
+    @PostMapping
     @Override
     public void addFarmer(@RequestBody AddFarmerRequest request) {
         addFarmer.execute(request);
     }
 
-    @PutMapping("/")
+    @PutMapping
     @Override
     public void updateFarmerDetails(@RequestBody UpdateFarmerDetailsRequest request) {
         updateFarmer.execute(request);

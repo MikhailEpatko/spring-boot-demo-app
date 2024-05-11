@@ -59,7 +59,7 @@ class FarmersControllerTest extends BasicIT {
                 )
         );
         ResponseEntity<List<FarmerEntity>> response = restTemplate.exchange(
-                "/v1/farmers/",
+                "/v1/farmers",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<FarmerEntity>>() {
@@ -100,7 +100,7 @@ class FarmersControllerTest extends BasicIT {
         );
 
         var response = restTemplate.postForEntity(
-                "/v1/farmers/",
+                "/v1/farmers",
                 farmer1,
                 FarmerEntity.class
         );
@@ -130,7 +130,7 @@ class FarmersControllerTest extends BasicIT {
         HttpEntity<FarmerEntity> entity = new HttpEntity<FarmerEntity>(farmer1);
 
         ResponseEntity<FarmerEntity> response = restTemplate.exchange(
-                "/v1/farmers/",
+                "/v1/farmers",
                 HttpMethod.PUT,
                 entity,
                 FarmerEntity.class,
