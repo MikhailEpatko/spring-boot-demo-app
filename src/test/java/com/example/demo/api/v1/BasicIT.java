@@ -1,32 +1,26 @@
-package com.example.demo.api.v1.cows.repository;
+package com.example.demo.api.v1;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
-@Testcontainers
-@SpringBootTest(
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public interface BasicIT {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public abstract class BasicIT {
 
-    @BeforeAll
-    static void beforeAll() {
+    public static PostgreSQLContainer<?> postgres;
+
+    static {
+        postgres = new PostgreSQLContainer<>(
+                DockerImageName.parse("postgres:15-alpine")
+        )
+                .withDatabaseName("farm_db")
+                .withUsername("kate")
+                .withPassword("password")
+                .withReuse(true);
         postgres.start();
     }
-
-    @AfterAll
-    static void afterAll() {
-        postgres.stop();
-    }
-
-    @Container
-    PostgreSQLContainer<?> postgres =
-            new PostgreSQLContainer<>("postgres:15-alpine");
 
     @DynamicPropertySource
     static void setPostgreSQLProperties(DynamicPropertyRegistry registry) {

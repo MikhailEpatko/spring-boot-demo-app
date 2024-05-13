@@ -1,9 +1,8 @@
 package com.example.demo.api.v1.farmes.controller;
 
-import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
-import com.example.demo.api.v1.cows.model.response.FullCowResponse;
-import com.example.demo.api.v1.cows.model.response.ShortCowResponse;
 import com.example.demo.api.v1.farmes.model.request.AddFarmerRequest;
+import com.example.demo.api.v1.farmes.model.request.UpdateFarmerDetailsRequest;
+import com.example.demo.api.v1.farmes.model.response.FarmerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
@@ -12,16 +11,16 @@ import java.util.List;
 public interface FarmersApi {
 
     @Operation(summary = "Запросить всех фермеров")
-    List<ShortCowResponse> getAllFarmers();
+    List<FarmerResponse> getAllFarmers();
 
     @Operation(summary = "Запросить фермера по его ID")
-    FullCowResponse farmer(long id);
+    FarmerResponse farmer(long id);
 
     @Operation(summary = "Добавить фермера")
     void addFarmer(AddFarmerRequest request);
 
     @Operation(summary = "Обновить описание фермера")
-    void updateFarmerDetails(UpdateCowDetailsRequest request);
+    void updateFarmerDetails(UpdateFarmerDetailsRequest request);
 
     @Operation(summary = "Удалить фермера")
     void deleteFarmer(long id);
