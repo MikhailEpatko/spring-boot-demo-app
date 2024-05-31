@@ -5,6 +5,7 @@ import static com.example.demo.api.v1.cows.model.enums.CowStatus.SOLD;
 
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.repository.CowRepository;
+import com.example.demo.common.exceptions.BadRequestException;
 import com.example.demo.common.exceptions.NotFoundException;
 import com.example.demo.validation.service.ValidateRequest;
 import jakarta.transaction.Transactional;
@@ -30,7 +31,8 @@ public class UpdateCow {
             existentCow.update(request);
             cowRepository.save(existentCow);
         } else {
-            throw new IllegalArgumentException("Данные коровы с ID = " + request.getId() + "не могут быть обновлены");
+            throw new BadRequestException("Данные коровы с ID = " + request.getId() + "не могут быть обновлены,"
+                    + "т.к. корова уже продана или умерла (см. статус коровы)");
         }
     }
 

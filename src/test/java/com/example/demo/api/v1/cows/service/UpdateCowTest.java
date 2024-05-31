@@ -14,6 +14,7 @@ import com.example.demo.api.v1.cows.model.entity.CowEntity;
 import com.example.demo.api.v1.cows.model.enums.CowStatus;
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.repository.CowRepository;
+import com.example.demo.common.exceptions.BadRequestException;
 import com.example.demo.common.exceptions.LightWeightExceptions;
 import com.example.demo.common.exceptions.NotFoundException;
 import com.example.demo.validation.service.ValidateRequest;
@@ -96,7 +97,7 @@ class UpdateCowTest {
         when(cows.findById(request.getId())).thenReturn(Optional.of(existentCow));
         when(existentCow.getStatus()).thenReturn(status);
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(BadRequestException.class,
                 () -> service.execute(request));
 
         verify(valid, times(1)).single(request);
