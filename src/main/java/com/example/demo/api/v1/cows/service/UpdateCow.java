@@ -1,8 +1,11 @@
 package com.example.demo.api.v1.cows.service;
 
+import static com.example.demo.api.v1.cows.model.enums.CowStatus.DEAD;
+import static com.example.demo.api.v1.cows.model.enums.CowStatus.SOLD;
 
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.repository.CowRepository;
+import com.example.demo.common.exceptions.BadRequestException;
 import com.example.demo.common.exceptions.NotFoundException;
 import com.example.demo.validation.service.ValidateRequest;
 import jakarta.transaction.Transactional;
@@ -24,7 +27,17 @@ public class UpdateCow {
         validate.single(request);
         var existentCow = cowRepository.findById(request.getId())
                 .orElseThrow(() -> new NotFoundException("Корова с ID = " + request.getId() + " не найдена"));
-        existentCow.update(request);
-        cowRepository.save(existentCow);
+        if (canUpdate(request)) {
+            existentCow.update(request);
+            cowRepository.save(existentCow);
+        } else {
+            throw new BadRequestException("Данные коровы с ID = " + request.getId() + "не могут быть обновлены,"
+                    + "т.к. корова уже продана или умерла (см. статус коровы)");
+        }
+    }
+
+    public boolean canUpdate(UpdateCowDetailsRequest request) {
+        return cowRepository.findById(request.getId()).map(entity -> !entity.getStatus().equals(DEAD)
+                && !entity.getStatus().equals(SOLD)).orElse(false);
     }
 }
