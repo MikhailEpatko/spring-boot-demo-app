@@ -1,6 +1,7 @@
 package com.example.demo.api.v1.cows.controller;
 
 import com.example.demo.api.v1.cows.model.request.AddCowRequest;
+import com.example.demo.api.v1.cows.model.request.AddDailyLitersRequest;
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.model.response.FullCowResponse;
 import com.example.demo.api.v1.cows.model.response.ShortCowResponse;
@@ -28,4 +29,7 @@ public interface CowsApi {
 
     @Operation(summary = "Удалить корову")
     void deleteCow(long id);
+
+    @Operation(summary = "Зафиксировать удой коровы")
+    void addDailyLiters(AddDailyLitersRequest request);
 }
