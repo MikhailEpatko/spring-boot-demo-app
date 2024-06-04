@@ -2,10 +2,12 @@ package com.example.demo.api.v1.cows.controller;
 
 import com.example.demo.api.v1.cows.model.entity.CowEntity;
 import com.example.demo.api.v1.cows.model.request.AddCowRequest;
+import com.example.demo.api.v1.cows.model.request.AddDailyLitersRequest;
 import com.example.demo.api.v1.cows.model.request.UpdateCowDetailsRequest;
 import com.example.demo.api.v1.cows.model.response.FullCowResponse;
 import com.example.demo.api.v1.cows.model.response.ShortCowResponse;
 import com.example.demo.api.v1.cows.service.AddCowToFarmer;
+import com.example.demo.api.v1.cows.service.AddDailyLitersToCow;
 import com.example.demo.api.v1.cows.service.DeleteCowById;
 import com.example.demo.api.v1.cows.service.GetAllCows;
 import com.example.demo.api.v1.cows.service.GetAllCowsFarmerByFarmerId;
@@ -34,6 +36,7 @@ public class CowsController implements CowsApi {
     private final AddCowToFarmer addCowToFarmer;
     private final UpdateCow updateCow;
     private final DeleteCowById deleteCowById;
+    private final AddDailyLitersToCow addLitersToCow;
 
     @GetMapping("/cows")
     @Override
@@ -75,5 +78,11 @@ public class CowsController implements CowsApi {
     @Override
     public void deleteCow(@PathVariable long id) {
         deleteCowById.execute(id);
+    }
+
+    @PostMapping("/cows/add-liters")
+    @Override
+    public void addDailyLiters(@RequestBody AddDailyLitersRequest request) {
+        addLitersToCow.execute(request);
     }
 }
